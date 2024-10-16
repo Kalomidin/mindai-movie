@@ -1,0 +1,47 @@
+[
+  [
+    "count_limit_template",
+    {
+      "movie_filter": null,
+      "characteristics": [
+        "characteristics=",
+        "title"
+      ],
+      "limit_function": [
+        "at_most",
+        1
+      ],
+      "time_grouping": [
+        "every_n_days",
+        5
+      ]
+    }
+  ],
+  [
+    "count_limit_template",
+    {
+      "movie_filter": [
+        "or",
+        [
+          "=",
+          "country",
+          "South Korea"
+        ],
+        [
+          "=",
+          "country",
+          "Germany"
+        ]
+      ],
+      "characteristics": null,
+      "limit_function": [
+        "at_least",
+        2
+      ],
+      "time_grouping": [
+        "every_n_days",
+        3
+      ]
+    }
+  ]
+]
