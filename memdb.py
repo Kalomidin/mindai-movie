@@ -105,16 +105,23 @@ class MemDB:
 
         # count the valid weeks
         for title_and_days in weekly_screenings.values():
-            group_by_characteristics = self.group_by_characteristics(
+            grouped_movies = self.group_by_characteristics(
                 title_and_days, movies, characteristics
             )
             is_valid_week = limit[0] == mvs.AT_MOST
-            for v in group_by_characteristics.values():
+            for grouped_movie in grouped_movies.values():
+                grouped_movie.sort()
+                i = 0
+                j = 0
                 cnt = 0
-                v.sort()
-                for i in v:
-                    if i - v[0] <= frequency - 1:
+                while j < len(grouped_movie):
+                    if grouped_movie[j] - grouped_movie[i] <= frequency - 1:
                         cnt += 1
+                        j += 1
+                    else:
+                        i += 1
+                        cnt -= 1
+                        continue
                     if limit[0] == mvs.AT_LEAST and cnt >= limit[1]:
                         is_valid_week = True
                         break
