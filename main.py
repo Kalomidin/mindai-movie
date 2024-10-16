@@ -30,10 +30,9 @@ if __name__ == "__main__":
         queries = json.load(f)
         for q in queries:
             if len(q) != 2:
-                raise memdb.InvalidRule
+                raise mvs.InvalidRule
             query = mvs.Query(q[1])
-            valid_weeks = mem.query(query)
-            print(q[0], valid_weeks)
+            print(q[0], mem.query(query))
 
     # run the server to handle queries
     PORT = 8081

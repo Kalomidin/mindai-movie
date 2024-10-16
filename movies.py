@@ -114,7 +114,6 @@ class Query:
             raise InvalidRule
         characteristics = set()
         for characteristic in self.characteristics[1:]:
-            # TODO: verify that caracteristic is a valid characteristic
             characteristics.add(characteristic)
         return characteristics
 

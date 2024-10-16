@@ -2,8 +2,6 @@
 
 import sqlite3
 import csv
-import http.server
-import json
 import time
 import movies as mvs
 
