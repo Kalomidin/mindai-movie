@@ -33,7 +33,10 @@
           "Germany"
         ]
       ],
-      "characteristics": null,
+      "characteristics": [
+        "characteristics=",
+        "genre"
+      ],
       "limit_function": [
         "at_least",
         2

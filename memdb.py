@@ -126,6 +126,8 @@ class MemDB:
                     if limit[0] == mvs.AT_MOST and cnt > limit[1]:
                         is_valid_week = False
                         break
+                if not is_valid_week:
+                    break
             if is_valid_week:
                 valid_weeks += 1
         print("Query took", round(time.time() - start, 2), "seconds")
