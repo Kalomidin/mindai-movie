@@ -1,7 +1,6 @@
 """ Main file to run the server and load the data into memory """
 
 import sys
-from http.server import HTTPServer
 import time
 import json
 
@@ -33,25 +32,4 @@ if __name__ == "__main__":
                 raise mvs.InvalidRule
             query = mvs.Query(q[1])
             print(q[0], mem.query(query))
-
-    # run the server to handle queries
-    PORT = 8081
-    if len(sys.argv) > 4:
-        PORT = int(sys.argv[4])
-    server = HTTPServer(
-        ("0.0.0.0", PORT),
-        lambda *args, **kwargs: srv.Server(*args, mem=mem, **kwargs),
-    )
-    try:
-        print("Server is running on port", PORT)
-        server.serve_forever()
-    except KeyboardInterrupt:
-        print("Server received keyboard interrupt")
-        server.shutdown()
-        server.server_close()
-        sys.exit(0)
-    except Exception as e:
-        print("Server stopped due to exception:", e)
-        server.shutdown()
-        server.server_close()
-        sys.exit(0)
+    # srv.init(mem)

@@ -112,7 +112,7 @@ class MemDB:
                 i = 0
                 j = 0
                 cnt = 0
-                while j < len(grouped_movie):
+                while j < len(grouped_movie) and i <= j:
                     if grouped_movie[j] - grouped_movie[i] <= frequency - 1:
                         cnt += 1
                         j += 1

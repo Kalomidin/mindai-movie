@@ -1,6 +1,9 @@
 
 import http.server
 import json
+import sys
+from http.server import HTTPServer
+
 import movies as mvs
 
 # simple server to handle queries
@@ -46,3 +49,26 @@ class Server(http.server.SimpleHTTPRequestHandler):
                 return
             print("Received uknown error:", e)
             self.write_response(500, "500 Internal Server Error")
+
+def init(mem):
+    # run the server to handle queries
+    port = 8081
+    if len(sys.argv) > 4:
+        port = int(sys.argv[4])
+    server = HTTPServer(
+        ("127.0.0.1", port),
+        lambda *args, **kwargs: Server(*args, mem=mem, **kwargs),
+    )
+    try:
+        print("Server is running on port", port)
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("Server received keyboard interrupt")
+        server.shutdown()
+        server.server_close()
+        sys.exit(0)
+    except Exception as e:
+        print("Server stopped due to exception:", e)
+        server.shutdown()
+        server.server_close()
+        sys.exit(0)
